@@ -1,0 +1,27 @@
+server:
+  port: 8080
+
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/ivix
+    username: ivix
+    password: ivix
+
+  jpa:
+    hibernate:
+      ddl-auto: validate
+
+  redis:
+    host: localhost
+    port: 6380
+
+security:
+  jwt:
+    issuer: "ivix"
+    audience: "ivix-clients"
+    access-ttl-minutes: 15
+    refresh-ttl-days: 30
+    key:
+      public-classpath: "keys/public.pem"
+      private-classpath: "keys/private.pkcs8.pem"
+

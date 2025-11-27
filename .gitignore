@@ -1,0 +1,16 @@
+.ivix/
+.idea/
+.vscode/
+.DS_Store
+**/target/
+**/.mvn/
+**/pom.xml.versionsBackup
+**/node_modules/
+**/.next/
+**/.turbo/
+**/build/
+**/.dart_tool/
+**/.flutter-plugins*
+**/.packages
+**/pubspec.lock
+**/*.log

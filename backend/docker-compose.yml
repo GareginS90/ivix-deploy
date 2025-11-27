@@ -1,0 +1,39 @@
+version: "3.9"
+
+services:
+  postgres:
+    image: postgres:15
+    container_name: ivix-postgres-1
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: ivix
+      POSTGRES_PASSWORD: ivix
+      POSTGRES_DB: ivix
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ivix -d ivix"]
+      interval: 5s
+      timeout: 3s
+      retries: 5
+
+  redis:
+    image: redis:7-alpine
+    container_name: ivix-redis-1
+    restart: unless-stopped
+    ports:
+      - "6380:6379"   # !!! Порт 6380 снаружи → 6379 внутри контейнера
+    command: ["redis-server", "--appendonly", "yes"]
+    volumes:
+      - redis_data:/data
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 5s
+      timeout: 3s
+      retries: 5
+
+volumes:
+  postgres_data:
+  redis_data:
