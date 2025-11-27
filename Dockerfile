@@ -1,13 +1,13 @@
-FROM openjdk:17.0.9-slim
+FROM openjdk:17
 
 WORKDIR /app
 COPY backend .
 
-# Устанавливаем Maven вручную
-RUN apt-get update && apt-get install -y maven
+# Устанавливаем Maven
+RUN microdnf install maven
 
 # Собираем проект
 RUN mvn clean package -DskipTests
 
-EXPOSE $PORT
+EXPOSE 8080
 CMD ["java", "-jar", "app/target/*.jar"]
