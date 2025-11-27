@@ -1,13 +1,5 @@
-FROM openjdk:17
-
+FROM eclipse-temurin:17-jre
 WORKDIR /app
-COPY backend .
-
-# Устанавливаем Maven
-RUN microdnf install maven
-
-# Собираем проект
-RUN mvn clean package -DskipTests
-
-EXPOSE 8080
-CMD ["java", "-jar", "app/target/*.jar"]
+COPY backend/app/target/*.jar app.jar
+EXPOSE $PORT
+CMD ["java", "-jar", "app.jar"]
