@@ -1,6 +1,0 @@
-[build]
-builder = "NIXPACKS"
-
-[build.commands]
-install = "cd backend && mvn clean install -DskipTests"
-start = "cd backend && java -Dserver.port=$PORT -jar app/target/*.jar"
